@@ -1,0 +1,17 @@
+{
+    "name": "pmvc-plugin/static_map",
+    "description": "Google static map",
+    "type": "library",
+    "keywords": ["map", "pmvc", "plug-in"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hill",
+            "email": "hill@kimo.com"
+        }
+    ],
+    "require": {
+        "pmvc/pmvc": "*"
+    },
+    "minimum-stability": "dev"
+}
