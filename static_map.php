@@ -40,7 +40,8 @@ class static_map extends \PMVC\PlugIn
         return $url;
     }
 
-    public function isLatLong($s){
+    public function isLatLong($s)
+    {
         $arr = explode(',',$s);
         if ( 2===count($arr) 
             && is_numeric($arr[0])
@@ -57,7 +58,7 @@ class static_map extends \PMVC\PlugIn
         if (is_null($url)) {
             $url = $this->toUrl();
         }
-        $tmpfname = tempnam("/tmp", "map_");
+        $tmpfname = \PMVC\plug('tmp')->file('map_');
         \PMVC\plug('curl')->get($url,function($r) use ($tmpfname){
             file_put_contents($tmpfname,$r->body);
         });
