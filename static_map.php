@@ -40,6 +40,32 @@ class static_map extends \PMVC\PlugIn
         return $url;
     }
 
+    /**
+     * @see https://developers.google.com/maps/documentation/streetview/intro#url_parameters
+     * @parameters int heading [0-360] 
+     * @parameters int fov [0-120] default 90 
+     * @parameters int pitch [-90-90] default 10 
+     */
+    public function toStreet()
+    {
+        $url = \PMVC\plug('url')->getUrl('https://maps.googleapis.com/maps/api/streetview');
+        $query = [
+            'location'=> $this['center'],
+            'size'=> \PMVC\value($this,['size'],'640x300')
+        ];
+        if (isset($this['heading'])) {
+            $query['heading'] = $this['heading'];
+        }
+        if (isset($this['fov'])) {
+            $query['fov'] = $this['fov'];
+        }
+        if (isset($this['pitch'])) {
+            $query['pitch'] = $this['pitch'];
+        }
+        $url->query = $query;
+        return (string)$url;
+    }
+
     public function isLatLong($s)
     {
         $arr = explode(',',$s);
